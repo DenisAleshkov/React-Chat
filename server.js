@@ -21,10 +21,12 @@ app.post('/rooms', (req, res) => {
         ]))
     }
     res.send()
-    // res.json([...rooms.keys()])
 })
 
 io.on('connection', socket => {
+    socket.on('ROOM:AUTH', (data) => {
+        console.log(data)
+    })
     console.log('socket connected', socket.id)
 })
 

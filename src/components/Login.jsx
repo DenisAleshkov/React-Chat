@@ -2,18 +2,26 @@ import React from 'react'
 import axios from 'axios'
 import socket from './../socket.js'
 
-const  Login = () => {
+
+const  Login = ({ onLogin }) => {
   const [roomId, setRoomId] = React.useState('')
   const [userName, setUserName] = React.useState('')
+  const [isLoading, setLoading] = React.useState(false)
 
-  const onEnter = () => {
+  const onEnter = async () => {
     if(!roomId || !userName){
-      return alert('Неверный данные')
+      return alert('Неверные данные')
     }
-    axios.post('/rooms',{
+    const obj = {
       roomId,
       userName
-    });
+    }
+    setLoading(true)
+    await axios.post('/rooms',{
+      roomId,
+      userName
+    })
+    onLogin(obj)
   }
 
     return (
@@ -32,7 +40,7 @@ const  Login = () => {
               onChange={ e => setUserName(e.target.value) }
               />
           </div>
-          <button onClick = { onEnter }>Login</button>
+          <button disabled={isLoading} onClick = { onEnter }>{isLoading ? 'ВХОД...' : 'ВОЙТИ'}</button>
         </div>
     )
 }
