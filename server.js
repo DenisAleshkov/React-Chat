@@ -24,8 +24,12 @@ app.post('/rooms', (req, res) => {
 })
 
 io.on('connection', socket => {
-    socket.on('ROOM:AUTH', (data) => {
-        console.log(data)
+    socket.on('ROOM:AUTH', ( { roomId, userName } ) => {
+        socket.join(roomId)
+        rooms.get(roomId).get('users').set(socket.id, userName) //save users
+        const users =  [...rooms.get(roomId).get('users').values()]
+        socket.to(roomId).broadcast.emit('ROOM:JOINED', users)
+        console.log(users)
     })
     console.log('socket connected', socket.id)
 })

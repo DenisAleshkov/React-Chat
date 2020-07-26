@@ -1,0 +1,40 @@
+.chat-wrapper {
+    height: 100vh;
+}
+.chat {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    min-height: 500px;
+}
+.chat-users {
+    background-color: lightblue;
+}
+
+.chat-messages {
+    background-color: mediumpurple;
+    padding: 20px;
+    margin-left: 10px;
+}
+
+.messages-box {
+    background-color: moccasin;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    padding: 5px;
+}
+
+.messages-inputs {
+    display: flex;
+    flex-direction: column;
+}
+
+.messages-inputs textarea {
+    margin-bottom: 8px;
+    height: 60px;
+    max-height: 100px;
+}
+.messages-inputs button {
+    padding: 9px;
+}
