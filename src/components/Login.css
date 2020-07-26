@@ -1,0 +1,15 @@
+.login {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: inherit;
+}
+
+.login-inputs {
+    margin-bottom: 10px;
+}
+
+.login-inputs input:nth-child(1) {
+    margin-right: 10px;
+}

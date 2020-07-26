@@ -9,7 +9,9 @@ function App() {
   const [state, dispatch] = React.useReducer(reducer, {
     isAuth: false,
     roomId: null,
-    userName: null
+    userName: null,
+    users: [],
+    messages: []
   })
 
   const onLogin = (obj) => {
@@ -19,18 +21,22 @@ function App() {
     })
     socket.emit('ROOM:AUTH', obj)
   }
-  React.useEffect( () => {
-    socket.on('ROOM:JOINED', users => {
-      console.log('new pols', users)
-    })
-  }, [])
 
-  console.log(state)
+  const setUsers = (users) => {
+    dispatch({
+      type: 'SET_USERS',
+      payload: users
+    })
+  }
+
+  React.useEffect( () => {
+    socket.on('ROOM:JOINED', setUsers)
+    socket.on('ROOM:LEAVE', setUsers)
+  }, [])
 
   return (
     <div className="app">
-      <Chat />
-        {/* { !state.isAuth ? <Login onLogin = {onLogin} /> : <Chat />  } */}
+        { !state.isAuth ? <Login onLogin = {onLogin} /> : <Chat  { ...state } />  }
     </div>
   );
 }

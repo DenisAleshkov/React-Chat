@@ -28,11 +28,19 @@ io.on('connection', socket => {
         socket.join(roomId)
         rooms.get(roomId).get('users').set(socket.id, userName) //save users
         const users =  [...rooms.get(roomId).get('users').values()]
-        socket.to(roomId).broadcast.emit('ROOM:JOINED', users)
-        console.log(users)
+        socket.to(roomId).emit('ROOM:JOINED', users)
     })
-    console.log('socket connected', socket.id)
+    socket.on('disconnect', () => {
+        rooms.forEach( (value, roomId) => {
+            if(value.get('users').delete(socket.id)) { // IF DELETE => TRUE
+                const users =  [...value.get('users').values()]
+                socket.to(roomId).broadcast.emit('ROOM:LEAVE', users)
+            }
+        })
+    })
 })
+
+
 
 server.listen(9999, (err) => {
     if(err){

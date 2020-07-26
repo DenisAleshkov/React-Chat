@@ -1,7 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import socket from './../socket.js'
-
+import './Login.css'
 
 const  Login = ({ onLogin }) => {
   const [roomId, setRoomId] = React.useState('')
@@ -26,7 +26,7 @@ const  Login = ({ onLogin }) => {
 
     return (
         <div className="login">
-          <div>
+          <div className="login-inputs">
             <input 
               type="text" 
               placeholder="Room Id" 
