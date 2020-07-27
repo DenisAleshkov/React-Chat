@@ -1,4 +1,5 @@
 import React from 'react'
+import axios from 'axios'
 import './App.css'
 import Login from './components/Login'
 import reducer from './reducer.js'
@@ -14,12 +15,14 @@ function App() {
     messages: []
   })
 
-  const onLogin = (obj) => {
+  const onLogin = async (obj) => {
     dispatch({
       type: 'IS_AUTH',
       payload: obj
     })
     socket.emit('ROOM:AUTH', obj)
+    const { data } = await axios.get(`/rooms/${obj.roomId}`)
+    setUsers(data.users)
   }
 
   const setUsers = (users) => {
@@ -30,8 +33,7 @@ function App() {
   }
 
   React.useEffect( () => {
-    socket.on('ROOM:JOINED', setUsers)
-    socket.on('ROOM:LEAVE', setUsers)
+    socket.on('ROOM:SET_USERS', setUsers)
   }, [])
 
   return (
