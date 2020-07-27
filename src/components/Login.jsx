@@ -1,6 +1,5 @@
 import React from 'react'
 import axios from 'axios'
-import socket from './../socket.js'
 import './Login.css'
 
 const  Login = ({ onLogin }) => {

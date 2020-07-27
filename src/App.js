@@ -32,13 +32,24 @@ function App() {
     })
   }
 
+  const addMessage = (message) =>{
+    dispatch({
+      type: 'NEW_MESSAGE',
+      payload: message
+    })
+  }
+
+
   React.useEffect( () => {
     socket.on('ROOM:SET_USERS', setUsers)
+    socket.on('ROOM:NEW_MESSAGE', addMessage)
   }, [])
+
+
 
   return (
     <div className="app">
-        { !state.isAuth ? <Login onLogin = {onLogin} /> : <Chat  { ...state } />  }
+        { !state.isAuth ? <Login onLogin = {onLogin} /> : <Chat  { ...state } onAddMessage={addMessage} />  }
     </div>
   );
 }
