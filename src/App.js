@@ -22,7 +22,11 @@ function App() {
     })
     socket.emit('ROOM:AUTH', obj)
     const { data } = await axios.get(`/rooms/${obj.roomId}`)
-    setUsers(data.users)
+    
+    dispatch({
+      type: 'SET_DATA',
+      payload: data,
+    })
   }
 
   const setUsers = (users) => {

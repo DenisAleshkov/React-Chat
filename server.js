@@ -48,7 +48,7 @@ io.on('connection', socket => {
             userName,
             text
         }
-        rooms.get(roomId).get('messages').push({ obj }) 
+        rooms.get(roomId).get('messages').push(obj) 
         socket.to(roomId).broadcast.emit('ROOM:NEW_MESSAGE', obj)
     })
 })

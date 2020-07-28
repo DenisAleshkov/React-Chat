@@ -17,7 +17,9 @@ const Chat = ({users, messages, userName, roomId, onAddMessage}) => {
         onAddMessage({userName, text: messagesValue})
         setMessagesValue('')
     }
-
+    const m = messages.map( m => m.text)
+    console.log('messages', messages)
+    console.log(m)
     React.useEffect(()=>{
         messagesRef.current.scrollTo(0, 999999)
     },[messages])
@@ -34,19 +36,17 @@ const Chat = ({users, messages, userName, roomId, onAddMessage}) => {
                 </div>
                 <div className="chat-messages messages">
                     <div className="messages-box" ref={messagesRef}>
-                        {messages.map( (message, index) => (
-                            <div className="messages-view" key={index+message}>
-                                <div className="messages-context">
-                                    <p className="messages-text">{ message.text }</p>
-                                    <span className="messages-name">{ message.userName }</span>
-                                </div>
+                        {messages.map( (message) => (
+                            <div className="messages-view">
+                                <p className="messages-text">{ message.text }</p>
+                                <span className="messages-name">{ message.userName }</span>
                             </div>
                            )
                         )
                         }
                     </div>
                     <div className="messages-inputs">
-                        <textarea 
+                        <textarea
                             className="messages-textare"
                             value={messagesValue}
                             onChange = { (e) => setMessagesValue(e.target.value) }
