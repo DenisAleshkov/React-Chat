@@ -25,6 +25,7 @@ const  Login = ({ onLogin }) => {
 
     return (
         <div className="login">
+        <h1>Sign In</h1>
           <div className="login-inputs">
             <input 
               type="text" 
@@ -39,7 +40,7 @@ const  Login = ({ onLogin }) => {
               onChange={ e => setUserName(e.target.value) }
               />
           </div>
-          <button disabled={isLoading} onClick = { onEnter }>{isLoading ? 'ВХОД...' : 'ВОЙТИ'}</button>
+          <button className="login-button" disabled={isLoading} onClick = { onEnter }>{isLoading ? 'ВХОД...' : 'ВОЙТИ'}</button>
         </div>
     )
 }
