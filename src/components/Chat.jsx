@@ -35,6 +35,7 @@ const Chat = ({users, messages, userName, roomId, onAddMessage}) => {
                                 <div className="users-view user">
                                      {users.map( (name, index) => <div key={ index } className="user-view">{ name }</div> )}
                                 </div>
+
                             </div>
                             <div className="chat-messages messages">
                                 <div className="messages-box" ref={messagesRef}>
@@ -50,6 +51,7 @@ const Chat = ({users, messages, userName, roomId, onAddMessage}) => {
                                 <div className="messages-inputs">
                                     <textarea
                                         className="messages-textarea"
+                                        placeholder="Write message..."
                                         value={messagesValue}
                                         onChange = { (e) => setMessagesValue(e.target.value) }
                                     ></textarea>

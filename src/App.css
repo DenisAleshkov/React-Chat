@@ -26,10 +26,13 @@ textarea:focus, input:focus {
   border-color: transparent !important;
 }
 
+p {
+	margin: 0;
+}
+
 .app {
    
     background-image:  url('./images/bg-01.jpg');
-    
     min-height: 100vh;
   
     display: flex;
