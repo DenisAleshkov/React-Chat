@@ -17,6 +17,15 @@ h1 {
 	margin: 0;
 }
 
+textarea {
+  outline: none;
+  border: none;
+}
+
+textarea:focus, input:focus {
+  border-color: transparent !important;
+}
+
 .app {
    
     background-image:  url('./images/bg-01.jpg');
