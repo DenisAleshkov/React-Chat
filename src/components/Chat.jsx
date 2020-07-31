@@ -17,9 +17,7 @@ const Chat = ({users, messages, userName, roomId, onAddMessage}) => {
         onAddMessage({userName, text: messagesValue})
         setMessagesValue('')
     }
-    const m = messages.map( m => m.text)
-    console.log('messages', messages)
-    console.log(m)
+    
     React.useEffect(()=>{
         messagesRef.current.scrollTo(0, 999999)
     },[messages])
